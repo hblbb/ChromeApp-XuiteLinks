@@ -9,6 +9,9 @@ Target
 Usage
 -----
 
+![Operations](http://hblbb.github.io/ChromeApp-XuiteLinks/XuiteLinks-WebUI.png)
+![Make sure the result](http://hblbb.github.io/ChromeApp-XuiteLinks/XuiteLinks-Actuallinking.png)
+
 Sugar
 -----
 
