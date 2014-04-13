@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Get the link of xuite photos">
+    <meta name="author" content="bernie">
+
+    <title>XuiteLinks</title>
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/md5.js"></script>
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">XuiteLinks</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="jumbotron">
+        <div class="container">
+            <h3 align="center">PHOTO.xuite.net</h3>
+            <form class="navbar-form" role=search>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="targetUrl" placeholder="Search for awesome stuff">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit" id="search-btn">
+                            <span class="glyphicon glyphicon-search">Search</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div id="copy">
+                <h4 align="center">Awesome Copy</h4>
+                <input type="text" class="form-control" id="clipboard" placeholder="hey url linking is right here" readonly>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" align="center">
+        <button type="button" id="more" class="btn btn-success">++ Load more ++</button>
+        <hr/>
+        <div id="result"></div>
+        <hr>
+        <footer>
+            <p>&copy; 2014 Grand.Sights | Power by Bernie.</p>
+        </footer>
+    </div> <!-- /container -->
+
+    <script>
+        // Before form action
+        $("#search-btn").click(function() {
+            event.preventDefault();
+            var inputUrl = $("#targetUrl").val();
+            getPhotos(inputUrl, -20);
+        });
+
+        function getPhotos(inputUrl, from) {
+            var parameters = inputUrl.split('/')
+
+            var secret_key = '2888302308';
+            var api_key = '0372a16a8443b4f6f910de2d724388fd';
+            var method = 'xuite.photo.public.getPhotos';
+            var user_id = parameters[3];
+            var album_id = parameters[4];
+            var start = from + 20;
+            var limit = 20;
+            var api_sig = CryptoJS.MD5(secret_key + album_id + api_key + limit + method + start + user_id);
+
+            $.ajax({
+                url: 
+                    'https://api.xuite.net/api.php?api_key=' + api_key + 
+                    '&api_sig=' + api_sig + 
+                    '&method=' + method + 
+                    '&user_id=' + user_id +
+                    '&album_id=' + album_id + 
+                    '&start=' + start + 
+                    '&limit=' + limit,
+                data: 'POST',
+                dataType: 'jsonp',
+                crossDomain: true,
+                success:function(data){
+                    var success = data['ok'];
+                    var response = data['rsp'];
+                    var error = function(code, msg) {
+                        console.log('code:' + code + ', msg:' + text);
+                    };    
+
+                    //console.log('success:' + success + ', total:' + response['total']);
+                    $('#more').attr('onClick', 'getPhotos("' + inputUrl + '", ' + start + ')');
+
+                    // Insert to main content
+                    $.each(response['photos'], function(index, image){            
+                        //console.log('name:' + image['thumb'] + ', url:' + image['image_url']);
+
+                        $('#result').prepend('<a href="#" onClick=onPhoto("' + image['image_url'] + '");><img src=' + image['thumb'] +' /></a>');
+                    });
+                } 
+            });
+        }
+
+        // Show linking
+        function onPhoto(url) {
+            $("#copy input").val(url);
+
+            // Magic Method
+            var clipboard = $("#clipboard");
+            clipboard.value = url;
+            clipboard.focus();
+            clipboard.select();
+            //$(document).execCommand('Copy');
+        }
+
+    </script>
+  </body>
+</html>
