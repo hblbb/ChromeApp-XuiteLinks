@@ -12,7 +12,7 @@ Fetch the Xuite Photo's linking and tranlate the data format in Markdown.
 Usage
 -----
 
-1. Download Chrome App and install. []()
+1. Download Chrome App and install. [XuiteLinks.crx](http://hblbb.github.io/ChromeApp-XuiteLinks/bin/XuiteLinks.crx)
 
 2. Open Chrome Web App shortcuts
 ![Chrome Web Apps](http://hblbb.github.io/ChromeApp-XuiteLinks/XuiteLinks-Intro0.png)
