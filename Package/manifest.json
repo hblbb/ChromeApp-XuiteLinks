@@ -1,0 +1,19 @@
+{
+  "name": "XuiteLinks",
+  "version": "3.0",
+  "manifest_version": 2,
+  "description": "Fecth the Xuite Photo's URLs",
+  "icons": {
+    "32": "32.png",
+    "64": "64.png",
+    "128": "128.png"
+  },
+  "app": {
+    "urls": [
+        "*://hblbb.github.io/ChromeApp-XuiteLinks/"
+    ],
+    "launch": {
+        "web_url": "http://hblbb.github.io/ChromeApp-XuiteLinks/"
+    }
+  }
+}
