@@ -119,12 +119,13 @@
         function onPhoto(url) {
             $("#copy input").val(url);
 
-            // Magic Method
+            // Try web storage
             var clipboard = $("#clipboard");
             clipboard.value = url;
             clipboard.focus();
             clipboard.select();
-            document.execCommand('Copy');
+
+            document.execCommand("Copy", false, null);
         }
 
     </script>
