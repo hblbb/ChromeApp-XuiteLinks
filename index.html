@@ -118,19 +118,20 @@
 
         // Show linking
         function onPhoto(url) {
-            $("#copy input").val(url);
-
-            // Copy to clipboard
-            $('.imageUrl').zclip({
-                path:'js/ZeroClipboard.swf',
-                copy:function(){
-                    return $('#copy input').val();
-		}
-	    }).click(function(){
-		alert('已複製到剪貼薄');
-	    });	
-
+            var inputElement = $('#copy input');
+            inputElement.focus();
+            inputElement.select();
+            $("#clipboard").trigger('click');
         }
+
+        $('#clipboard').zclip({
+            path:'js/ZeroClipboard.swf',
+            copy:function(){
+                return $('#copy input').val();
+            }
+        });
+
+
 
     </script>
   </body>
