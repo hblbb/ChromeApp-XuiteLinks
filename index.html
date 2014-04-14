@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.zclip.min.js"></script>
+    <script src="js/ZeroClipboard.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/md5.js"></script>
   </head>
@@ -42,20 +42,31 @@
                     <input type="text" class="form-control" id="targetUrl" placeholder="Search for awesome stuff">
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="submit" id="search-btn">
-                            <span class="glyphicon glyphicon-search">Search</span>
+                            <span class="glyphicon glyphicon-search"> Search</span>
                         </button>
                     </div>
                 </div>
             </form>
-            <div id="copy">
-                <h4 align="center">Awesome Copy</h4>
-                <input type="text" class="form-control" id="clipboard" placeholder="hey url linking is right here" readonly>
-            </div>
+            <h4 align="center">Awesome magic</h4>
+            <form class="navbar-form" role=search>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="clipboard" placeholder="Hey Url linking is right here" readonly>
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" id="copy-button" data-clipboard-text="text1">
+                            <span class="glyphicon glyphicon-log-in"> Copy</span>
+                        </button>
+                        <button class="btn btn-default" id="markdown-button" data-clipboard-text="text2">
+                            <span class="glyphicon glyphicon-file"> Markdown</span>
+                        </button>
+
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 
     <div class="container" align="center">
-        <button type="button" id="more" class="btn btn-success">++ Load more ++</button>
+        <button type="button" id="more" class="btn btn-primary">++ Load more ++</button>
         <hr/>
         <div id="result"></div>
         <hr>
@@ -110,28 +121,39 @@
                     $.each(response['photos'], function(index, image){            
                         //console.log('name:' + image['thumb'] + ', url:' + image['image_url']);
 
-                        $('#result').prepend('<a href="#" class="imageUrl" onClick=onPhoto("' + image['image_url'] + '");><img src=' + image['thumb'] +' /></a>');
+                        $('#result').prepend('<a href="#" onClick=onPhoto("' + image['image_url'] + '");><img src=' + image['thumb'] +' /></a>');
                     });
                 } 
             });
         }
 
-        // Show linking
+        // Show linking and Copy to clipboard
         function onPhoto(url) {
-            var inputElement = $('#copy input');
+            var inputElement = $('#clipboard');
             inputElement.val(url);
             inputElement.focus();
             inputElement.select();
-            $("#clipboard").trigger('click');
+            
+            // Set to hidden button attribute
+            $('#copy-button').attr('data-clipboard-text', url);
+            $('#markdown-button').attr('data-clipboard-text', '![](' + url + ')');
+
         }
 
-        $('#clipboard').zclip({
-            path:'js/ZeroClipboard.swf',
-            copy:function(){
-                return $('#copy input').val();
-            }
+        // Magic ZeroClipboard Library
+        var client1 = new ZeroClipboard($('#copy-button'));
+        client1.on("ready", function(readyEvent) {
+            client1.on("aftercopy", function(event) {
+                //alert("Copied text to clipboard: " + event.data["text/plain"] );
+            });
         });
 
+        var client2 = new ZeroClipboard($('#markdown-button'));
+        client2.on("ready", function(readyEvent) {
+            client2.on("aftercopy", function(event) {
+                //alert("Copied text to clipboard: " + event.data["text/plain"] );
+            });
+        });
 
 
     </script>
