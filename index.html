@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.zclip.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/md5.js"></script>
   </head>
@@ -109,7 +110,7 @@
                     $.each(response['photos'], function(index, image){            
                         //console.log('name:' + image['thumb'] + ', url:' + image['image_url']);
 
-                        $('#result').prepend('<a href="#" onClick=onPhoto("' + image['image_url'] + '");><img src=' + image['thumb'] +' /></a>');
+                        $('#result').prepend('<a href="#" class="imageUrl" onClick=onPhoto("' + image['image_url'] + '");><img src=' + image['thumb'] +' /></a>');
                     });
                 } 
             });
@@ -120,12 +121,15 @@
             $("#copy input").val(url);
 
             // Copy to clipboard
-            var clipboard = $("#clipboard");
-            clipboard.value = url;
-            clipboard.focus();
-            clipboard.select();
+            $('.imageUrl').zclip({
+                path:'js/ZeroClipboard.swf',
+                copy:function(){
+                    return $('#copy input').val();
+		}
+	    }).click(function(){
+		alert('已複製到剪貼薄');
+	    });	
 
-            document.execCommand("Copy", false, null);
         }
 
     </script>
