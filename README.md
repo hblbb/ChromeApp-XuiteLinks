@@ -1,19 +1,27 @@
 XuiteLinks
 =============
 
-The demonstration at the Bernie Gossip Party#2
+Get any picture's url quickly, and then copy to clipboard.
+Saving life during making such a boring thing between the Ctrl + C and Ctrl + V.
 
 Target
 ------
 
+Fetch the Xuite Photo's linking and tranlate the data format in Markdown.
+
 Usage
 -----
 
-1.Paste the URL of target Album, and press search bar to process.
-![Operations](http://hblbb.github.io/ChromeApp-XuiteLinks/XuiteLinks-WebUI.png)
+1. Download Chrome App and install. []()
 
-2.Sweet! 
-![Make sure the result](http://hblbb.github.io/ChromeApp-XuiteLinks/XuiteLinks-Actuallinking.png)
+2.Open Chrome Web App shortcuts
+![Chrome Web Apps](http://hblbb.github.io/ChromeApp-XuiteLinks/XuiteLinks-Intro0.png)
+
+3.Paste the URL of target Album, and press search bar to process.
+![Operations](http://hblbb.github.io/ChromeApp-XuiteLinks/XuiteLinks-Intro1.png)
+
+4.Sweet! 
+![Make sure the result](http://hblbb.github.io/ChromeApp-XuiteLinks/XuiteLinks-Intro2.png)
 
 Sugar
 -----
