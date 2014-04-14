@@ -14,13 +14,13 @@ Usage
 
 1. Download Chrome App and install. []()
 
-2.Open Chrome Web App shortcuts
+2. Open Chrome Web App shortcuts
 ![Chrome Web Apps](http://hblbb.github.io/ChromeApp-XuiteLinks/XuiteLinks-Intro0.png)
 
-3.Paste the URL of target Album, and press search bar to process.
+3. Paste the URL of target Album, and press search bar to process.
 ![Operations](http://hblbb.github.io/ChromeApp-XuiteLinks/XuiteLinks-Intro1.png)
 
-4.Sweet! 
+4. Sweet! 
 ![Make sure the result](http://hblbb.github.io/ChromeApp-XuiteLinks/XuiteLinks-Intro2.png)
 
 Sugar
