@@ -9,18 +9,23 @@ Target
 Usage
 -----
 
+1.Paste the URL of target Album, and press search bar to process.
 ![Operations](http://hblbb.github.io/ChromeApp-XuiteLinks/XuiteLinks-WebUI.png)
+
+2.Sweet! 
 ![Make sure the result](http://hblbb.github.io/ChromeApp-XuiteLinks/XuiteLinks-Actuallinking.png)
 
 Sugar
 -----
 
+[Xuite API](http://api.xuite.net/document/bin/xuite_dev/public/) and focus on [Public Photo](xuite.photo.public.getPhotos)'s extract.
+
 Frameworks and Library
 ----------------------
 
 - jQuery
-- JavaScript MD5
 - Bootstrap 3
+- [JavaScript MD5](https://code.google.com/p/crypto-js/#MD5)
 
 License
 -------
