@@ -119,6 +119,7 @@
         // Show linking
         function onPhoto(url) {
             var inputElement = $('#copy input');
+            inputElement.val(url);
             inputElement.focus();
             inputElement.select();
             $("#clipboard").trigger('click');
